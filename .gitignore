@@ -1,0 +1,19 @@
+# Log Files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Addictions (Most Important!)
+# This folder can be recreated by anyone using the ‘npm install’ command.
+/node_modules
+
+# Compiled TypeScript Code
+# This folder can be recreated with the ‘npm run build’ command.
+/dist
+
+# Environment Variables File (Very Important!)
+# This file contains confidential information such as API keys and passwords.
+.env
+
+# Operating System and Editor Files.DS_Store
+.vscode/

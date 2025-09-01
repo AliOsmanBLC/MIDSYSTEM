@@ -1,0 +1,59 @@
+[
+  {
+    "email": "ali.kaya@example.com",
+    "phone": "+905321112233",
+    "consentStatus": "APPROVE",
+    "lastUpdated": "2025-08-26T08:30:00.000Z"
+  },
+  {
+    "email": "zeynep.yilmaz@example.com",
+    "phone": "+905424445566",
+    "consentStatus": "REJECT",
+    "lastUpdated": "2025-08-25T14:00:00.000Z"
+  },
+  {
+    "email": "sadece-eposta@example.com",
+    "consentStatus": "APPROVE",
+    "lastUpdated": "2025-08-24T18:45:00.000Z"
+  },
+  {
+    "email": "mehmet.ozturk@example.com",
+    "phone": "+905337778899",
+    "consentStatus": "APPROVE",
+    "lastUpdated": "2025-08-26T01:15:10.000Z"
+  },
+  {
+    "email": "fatma.demir@example.com",
+    "phone": "+905551239876",
+    "consentStatus": "APPROVE",
+    "lastUpdated": "2025-08-23T11:20:30.000Z"
+  },
+  {
+    "email": "mustafa.sahin@example.com",
+    "consentStatus": "REJECT",
+    "lastUpdated": "2025-08-22T21:05:00.000Z"
+  },
+  {
+    "email": "ayse.celik@example.com",
+    "phone": "+905056543210",
+    "consentStatus": "REJECT",
+    "lastUpdated": "2025-08-25T16:30:15.000Z"
+  },
+  {
+    "email": "ahmet.yildiz@example.com",
+    "phone": "+905358887766",
+    "consentStatus": "APPROVE",
+    "lastUpdated": "2025-08-21T09:00:00.000Z"
+  },
+  {
+    "email": "deneme.kullanici@example.com",
+    "phone": "+905412223344",
+    "consentStatus": "APPROVE",
+    "lastUpdated": "2025-08-20T12:00:00.000Z"
+  },
+  {
+    "email": "iptal.eden@example.com",
+    "consentStatus": "REJECT",
+    "lastUpdated": "2025-08-19T23:59:59.000Z"
+  }
+]
