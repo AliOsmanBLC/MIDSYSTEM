@@ -9,12 +9,11 @@ import { metunicWebhookSchema } from './validation/consent.schema.js';
 import type { MetunicUser } from './types/consent.types.js';
 
 const app = express();
-
 app.use(express.json());
 
 app.post('/webhooks/metunic', async (req, res) => {
   console.log('>>> Metunic\'ten yeni bir webhook isteği alındı!', req.body);
-  
+
   const validationResult = metunicWebhookSchema.safeParse(req.body);
 
   if (!validationResult.success) {
@@ -25,8 +24,8 @@ app.post('/webhooks/metunic', async (req, res) => {
     });
   }
 
-  
   const validatedData = validationResult.data;
+
   const metunicUser: MetunicUser = {
     email: validatedData.email,
     consentStatus: validatedData.consentStatus,
@@ -42,16 +41,23 @@ app.post('/webhooks/metunic', async (req, res) => {
   res.status(200).send({ message: 'Webhook başarıyla alındı ve işleme konuldu.' });
 });
 
+app.get('/sync-iys', async (req, res) => {
+  console.log('\n>>> IYS senkronizasyonu manuel olarak tetiklendi!');
+  synchronizeChangesToMetunic(); 
+  res.status(202).send({ 
+    message: 'IYS senkronizasyon işlemi başlatıldı. Sonuçları terminalden takip edebilirsiniz.' 
+  });
+});
 
 app.listen(config.port, () => {
   console.log(`--- Ara Katman Sunucusu Başlatıldı ---`);
   console.log(`🚀 Sunucu http://localhost:${config.port} adresinde çalışıyor`);
   console.log(`Metunic Webhook adresi: http://localhost:${config.port}/webhooks/metunic`);
 
-
   console.log('🕒 IYS -> Metunic senkronizasyon görevi zamanlandı (Her 15 dakikada bir çalışacak).');
-  cron.schedule('*/1 * * * *', () => {
-    console.log(`\n⏰ Zamanlanmış görev tetiklendi! (${new Date().toLocaleTimeString()})`);
+
+  cron.schedule('*/15 * * * *', () => {
+    console.log(`\n⏰ Zamanlanmış görev tetiklendi! (${new Date().toLocaleTimeString('tr-TR')})`);
     synchronizeChangesToMetunic();
   });
 });

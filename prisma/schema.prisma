@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Consent {
+  id          Int      @id @default(autoincrement())
+  recipient   String 
+  channel     Channel
+  status      Status 
+  type        RecipientType 
+  source      String 
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+
+  @@unique([recipient, channel])
+}
+
+model ConsentOperation {
+  id        Int       @id @default(autoincrement())
+  recipient String
+  channel   Channel
+  status    Status
+  type      RecipientType
+  direction Direction // Değişikliğin yönü (IYS'den mi, Metunic'ten mi?)
+  createdAt DateTime  @default(now())
+}
+
+
+enum Channel {
+  MESSAGE
+  CALL
+  EPOSTA
+}
+
+enum RecipientType {
+  BIREYSEL
+  TACIR
+}
+
+enum Status {
+  APPROVE
+  REJECT
+}
+
+enum Direction {
+  FROM_IYS
+  FROM_METUNIC
+}
