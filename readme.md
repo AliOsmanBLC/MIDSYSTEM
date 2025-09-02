@@ -43,30 +43,27 @@ MIDSYSTEM, Metunic ve İleti Yönetim Sistemi (IYS) arasında çift yönlü izin
 ### 2. Bağımlılıkların Yüklenmesi  
 Tüm kütüphaneleri `.env` dosyasına ihtiyaç duymadan aşağıdaki komut ile kurabilirsiniz:
 ```bash
-npm install express axios zod prisma @prisma/client nodemon typescript ts-node
-3. Prisma (Veritabanı İşlemleri)
-Prisma kurulumunu yapmak ve veritabanı tablolarını oluşturmak için:
-# Prisma başlatma
-npx prisma init
+npm run dev
+```
 
-# Şema tanımlamasından sonra migration oluşturma
-npx prisma migrate dev --name init
+### 6.2 Üretim Modu
+1. Derleme:
+   ```bash
+   npm run build
+   ```
+2. Sunucu başlatma:
+   ```bash
+   npm start
+   ```
 
-# Veritabanı istemcisi oluşturma
-npx prisma generate
+Başarılı çalıştırma sonrası örnek çıktı:
+```text
+--- Middleware Sunucusu Başlatıldı ---
+Sunucu: http://localhost:3000
+Metunic Webhook: http://localhost:3000/webhooks/metunic
+IYS Sync Test: http://localhost:3000/sync-iys
+```
 
-
-4. Çalıştırma
-# Kodları TypeScript’ten derle
-npm run build
-
-# Derlenmiş projeyi başlat
-npm start
-Not: package.json içinde build script’i genelde tsc komutunu, start script’i ise node dist/index.js çalıştıracak şekilde tanımlıdır. Eğer farklıysa kendi package.json’unuza göre güncelleyin.
-
-5. Testler & Doğrulama
-Webhook test: Metunic tarafında bir değişiklik simüle edilip POST /webhooks/metunic endpoint’ine istek gönderilerek test edilir.
-Cron senkronizasyon testi: GET /sync-iys çağrılarak manuel tetikle tüm kontrol mekanizması çalıştırılır.
-
-Sonuç
-Bu proje, Metunic ve IYS sistemleri arasında güvenilir, esnek ve ölçeklenebilir bir senkronizasyon köprüsü sağlar. Hem otomatik webhook hem de periyodik cron mekanizmaları ile izin verilerinin her zaman güncel ve doğru kalmasını garanti eder.
+## 7. Test ve Doğrulama
+- **Webhook testi:** Metunic sisteminden bir izin değişikliği simüle edilerek `/webhooks/metunic` endpoint’i üzerinden doğrulanabilir.  
+- **IYS senkronizasyon testi:** `/sync-iys` endpoint’i çağrılarak periyodik senkronizasyon manuel tetiklenebilir.  
